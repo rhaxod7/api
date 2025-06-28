@@ -15,6 +15,15 @@ window.addEventListener('timetable-updated', () => {
   if (clockDiv) clockDiv.innerHTML = CircularClock();
 });
 
+// 시계가 부드럽게 움직이도록 애니메이션 루프 추가
+function animateClock() {
+  const clockDiv = document.getElementById('circular-clock');
+  if (clockDiv) clockDiv.innerHTML = CircularClock();
+  requestAnimationFrame(animateClock);
+}
+
+animateClock();
+
 // 오늘 날짜와 현재 기온 표시
 async function showTodayInfo() {
   const infoDiv = document.querySelector('.today-info');

@@ -50,11 +50,6 @@ export function App() {
         <div class="todo-list-section" style="...">
           <div class="todo-list" id="todo-list" style="..."></div>
         </div>
-        <div class="memo-section" style="...">
-          <button id="clear-all-btn" style="margin-bottom:8px;width:100%;max-width:400px;display:block;">전체 지우기</button>
-          <h2>메모</h2>
-          <textarea id="memo-input" ...></textarea>
-        </div>
       </main>
       <footer></footer>
     </div>
