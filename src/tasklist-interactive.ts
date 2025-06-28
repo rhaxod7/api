@@ -11,6 +11,7 @@ export function setupTaskListInteractions() {
 
   // 렌더링 함수
   function render(tasks: { text: string; completed: boolean }[]) {
+    if (!ul) return;
     ul.innerHTML = '';
     tasks.forEach((task, idx) => {
       const li = document.createElement('li');
@@ -31,6 +32,7 @@ export function setupTaskListInteractions() {
         saveTasks(tasks);
         render(tasks);
       };
+      if (!ul) return;
       ul.appendChild(li);
     });
 
