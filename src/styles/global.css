@@ -1,0 +1,282 @@
+/* Global styles placeholder */ 
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Pretendard', 'Arial', sans-serif;
+  background: #f7f9fb;
+}
+.app-container {
+  max-width: none;
+  width: 100%;
+  max-width: 1800px;
+  min-width: 0;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 32px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+header, footer {
+  padding: 12px 0;
+  text-align: center;
+  width: 100%;
+  max-width: 1800px;
+  min-width: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 1800px;
+  min-width: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+.timetable, .circular-clock, .task-list {
+  background: #f0f4fa;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 8px;
+}
+.timetable {
+  background: #f0f4fa;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 8px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 1800px;
+  min-width: 0;
+}
+.timetable table {
+  width: 100%;
+  max-width: 1800px;
+  min-width: 0;
+  border-collapse: collapse;
+  background: #fff;
+}
+.timetable th, .timetable td {
+  border: 1px solid #e0e6ef;
+  padding: 2px 4px;
+  text-align: center;
+}
+.timetable th {
+  background: #f0f4fa;
+}
+.timetable .hour {
+  font-weight: bold;
+  background: #f7f9fb;
+}
+.circular-clock svg {
+  display: block;
+  margin: 0 auto;
+}
+.task-list form {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+.task-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.task-list li {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 0;
+}
+.task-list .delete-btn {
+  background: #ffbdbd;
+  border: none;
+  border-radius: 4px;
+  padding: 2px 8px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.task-list form button {
+  font-size: 13px;
+  padding: 4px 8px;
+}
+.recommend-row {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 12px;
+}
+.recommend-box {
+  min-width: 220px;
+  max-width: 220px;
+  width: 220px;
+  height: 220px;
+  box-sizing: border-box;
+}
+@media (max-width: 600px) {
+  .recommend-row {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+  .recommend-box {
+    min-width: 0;
+    max-width: 100%;
+  }
+}
+#task-progress-bar {
+  background: #e0e6ef;
+  border-radius: 7px;
+  overflow: hidden;
+  position: relative;
+  min-width: 80px;
+  max-width: 120px;
+  height: 14px;
+  flex: 1;
+}
+#task-progress-fill {
+  height: 100%;
+  background: #4f8cff;
+  width: 0%;
+  transition: width 0.3s;
+}
+#task-progress-text {
+  position: absolute;
+  left: 0; right: 0; top: 0; bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: #333;
+  font-weight: bold;
+}
+.task-list > div {
+  margin-bottom: 8px;
+}
+.main-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+}
+.main-recommend {
+  min-width: 220px;
+  max-width: 260px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+#circular-clock {
+  min-width: 220px;
+  max-width: 220px;
+  width: 220px;
+  height: 220px;
+  box-sizing: border-box;
+}
+.main-recommend-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.recommend-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  padding: 18px 8px 8px 8px;
+}
+.recommend-img-row img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 16px;
+  background: #f5f5f5;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+@media (max-width: 1200px) {
+  .main-row {
+    flex-direction: column;
+    gap: 32px;
+  }
+  #circular-clock, .main-recommend-row {
+    min-width: 0;
+    width: 100%;
+    margin-bottom: 24px;
+  }
+  .main-recommend-row {
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+/* Compact timetable 할일/메모칸 input fields */
+.tt-task,
+.tt-memo {
+  padding: 2px 4px;
+  font-size: 13px;
+  height: 24px;
+  box-sizing: border-box;
+  width: 100%;
+}
+@media (max-width: 700px) {
+  .app-container,
+  main,
+  header,
+  footer,
+  .timetable,
+  .timetable table,
+  #circular-clock,
+  .recommend-box {
+    width: 100%;
+    max-width: 1800px;
+    min-width: 0;
+  }
+  .main-row {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .main-recommend-row {
+    flex-direction: row !important;
+    gap: 8px;
+    align-items: flex-start;
+    width: auto;
+  }
+  .recommend-box {
+    margin-bottom: 0;
+  }
+}
+@media (max-width: 1000px) {
+  .main-row {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .main-recommend-row {
+    flex-direction: row !important;
+    gap: 8px;
+    align-items: flex-start;
+    width: auto;
+  }
+  .recommend-box {
+    margin-bottom: 0;
+    min-width: 70px;
+    max-width: 70px;
+    width: 70px;
+    height: 70px;
+  }
+}

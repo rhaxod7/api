@@ -1,0 +1,41 @@
+# Visual Daily Planner PRD
+
+## 1. Overview
+A web app for visually managing daily schedules by combining a timetable (hourly grid) and a circular (clock-style) time management UI. Users can add tasks, mark completion, write notes, and view motivational quotes. The app recommends activities by category and integrates with public APIs for real-time content (recipes, books, etc.).
+
+## 2. Core Features
+- **Timetable & Circular Time UI**: Visualize the day in both grid and clock formats. Users can interact with both to manage their schedule.
+- **Task Management**: Add, edit, and check off tasks for each time slot. Add notes and view motivational quotes per slot.
+- **Category Recommendations**: Suggest activities for rest, hobbies, exercise, self-development, relationships, volunteering, etc. Special section for "What to do when you don't know what to do" at the bottom.
+- **Motivational Quotes**: Display a daily quote at the top, in the calendar, and in each schedule slot. Quotes are fetched from an API or local DB.
+- **API Content Integration**: Real-time recommendations for recipes, books, etc., using free public APIs. Each activity slot can show a "Today's Recipe" or "Today's Book" button.
+- **Notifications & Reminders**: Digital time management tools for routine reminders, completion checks, and visual tools (timetable, circular chart, checklist) to boost adherence.
+
+## 3. User Stories
+- As a user, I want to see my day visually in both a timetable and a circular chart.
+- As a user, I want to add, check, and annotate tasks for each time slot.
+- As a user, I want to get activity recommendations by category and for idle time.
+- As a user, I want to see motivational quotes throughout the app.
+- As a user, I want to get real-time content recommendations (recipes, books) via API.
+- As a user, I want reminders and notifications for my schedule and routines.
+
+## 4. Technical Requirements
+- Vite Vanilla JS/TS project structure
+- Responsive UI for desktop and mobile
+- Integration with public APIs (recipes, books, quotes)
+- Local storage for user data (tasks, notes, completion)
+- Modular, maintainable codebase
+
+## 5. Stretch Goals
+- User authentication for cloud sync
+- Analytics for time usage
+- Customizable themes
+
+## 6. Non-Goals
+- No paid API dependencies
+- No complex social features
+
+## 7. References
+- [식품의약품안전처 Open API: https://www.foodsafetykorea.go.kr/api/newDatasetList.do ]
+- [공공도서관/서점 API: https://openlibrary.org/developers/api] 
+- [명언 API 예시: https://zenquotes.io/] 

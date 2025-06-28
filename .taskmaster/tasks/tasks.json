@@ -1,0 +1,218 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Setup Vite Project Structure",
+        "description": "Initialize a new Vite project with Vanilla JS/TS and set up the basic folder structure for the application.",
+        "details": "1. Install Node.js and npm if not already installed\n2. Create a new Vite project: `npm create vite@latest visual-daily-planner -- --template vanilla-ts`\n3. Set up folder structure:\n   - src/\n     - components/\n     - services/\n     - utils/\n     - styles/\n     - assets/\n4. Configure TypeScript (tsconfig.json)\n5. Set up ESLint and Prettier for code quality\n6. Initialize Git repository\n7. Create initial README.md with project description",
+        "testStrategy": "Verify that the project builds successfully with `npm run build` and development server starts with `npm run dev`. Ensure all folders are created correctly and TypeScript configuration works.",
+        "priority": "high",
+        "dependencies": [],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 2,
+        "title": "Create Responsive Layout Structure",
+        "description": "Implement the basic responsive layout structure for the application, supporting both desktop and mobile views.",
+        "details": "1. Create HTML structure with main containers\n2. Implement CSS Grid/Flexbox for responsive layout\n3. Define CSS variables for theming (colors, fonts, spacing)\n4. Create responsive breakpoints for mobile, tablet, and desktop\n5. Implement basic navigation/header\n6. Create placeholder containers for timetable, circular view, and recommendation sections\n7. Ensure the layout adapts properly to different screen sizes\n8. Use CSS media queries for responsive design",
+        "testStrategy": "Test the layout on different screen sizes using browser dev tools. Verify that all containers are properly positioned and responsive. Use Lighthouse to check for accessibility and mobile-friendliness.",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 3,
+        "title": "Implement Timetable Grid View",
+        "description": "Create the hourly timetable grid view component for visualizing daily schedule in a traditional format.",
+        "details": "1. Create a TimeTableGrid component\n2. Implement 24-hour grid layout (or customizable range)\n3. Add time labels for each hour\n4. Create CSS for grid cells and time slots\n5. Implement hover and selection states\n6. Add empty state and placeholders for tasks\n7. Make grid cells interactive (clickable)\n8. Ensure the grid is scrollable for mobile views\n9. Add basic animations for interactions\n\nCode structure:\n```typescript\nclass TimeTableGrid {\n  constructor(container, options) {\n    this.container = container;\n    this.options = options;\n    this.init();\n  }\n  \n  init() {\n    // Create grid structure\n  }\n  \n  renderHourSlots() {\n    // Render 24 hour slots\n  }\n  \n  handleCellClick(hour) {\n    // Handle cell selection\n  }\n}\n```",
+        "testStrategy": "Test the timetable grid by verifying all 24 hours are displayed correctly. Check that hover and click states work as expected. Test scrolling behavior on mobile. Verify that the grid maintains proper layout at different screen sizes.",
+        "priority": "high",
+        "dependencies": [
+          2
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 4,
+        "title": "Implement Circular Clock View",
+        "description": "Create the circular clock-style visualization component for the daily schedule.",
+        "details": "1. Create a CircularTimeView component\n2. Use SVG or Canvas for drawing the circular clock\n3. Implement 12/24 hour visualization with proper segments\n4. Add time labels around the circle\n5. Create interactive segments for each hour\n6. Implement hover and selection states\n7. Sync selection state with the timetable grid\n8. Add visual indicators for tasks and completion status\n9. Ensure the component is responsive\n\nCode structure:\n```typescript\nclass CircularTimeView {\n  constructor(container, options) {\n    this.container = container;\n    this.options = options;\n    this.init();\n  }\n  \n  init() {\n    // Create SVG/Canvas element\n    // Draw clock circle\n  }\n  \n  drawHourSegments() {\n    // Draw 24 segments for hours\n  }\n  \n  handleSegmentClick(hour) {\n    // Handle segment selection\n    // Emit event for synchronization\n  }\n}\n```",
+        "testStrategy": "Test the circular view by verifying all hour segments are displayed correctly. Check that hover and click states work as expected. Test that the view is properly centered and responsive. Verify that segments can be selected and highlighted.",
+        "priority": "high",
+        "dependencies": [
+          2
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 5,
+        "title": "Implement Task Management System",
+        "description": "Create the core task management functionality allowing users to add, edit, and check off tasks for each time slot.",
+        "details": "1. Create a TaskManager class to handle task operations\n2. Define Task interface/type with properties (id, title, description, timeSlot, completed, notes)\n3. Implement methods for CRUD operations on tasks\n4. Create UI components for task input, display, and editing\n5. Implement task completion toggle functionality\n6. Add drag-and-drop for moving tasks between time slots\n7. Create task detail view for notes and additional information\n8. Implement task filtering and sorting\n\nCode structure:\n```typescript\ninterface Task {\n  id: string;\n  title: string;\n  description?: string;\n  timeSlot: number; // hour (0-23)\n  completed: boolean;\n  notes?: string;\n}\n\nclass TaskManager {\n  tasks: Task[] = [];\n  \n  addTask(task: Partial<Task>): Task {\n    // Generate ID, add to collection\n  }\n  \n  updateTask(id: string, updates: Partial<Task>): Task {\n    // Find and update task\n  }\n  \n  deleteTask(id: string): boolean {\n    // Remove task\n  }\n  \n  getTasksByHour(hour: number): Task[] {\n    // Filter tasks by timeSlot\n  }\n}\n```",
+        "testStrategy": "Test adding, editing, and deleting tasks. Verify that tasks appear in the correct time slots in both views. Test task completion toggle. Verify that task data is correctly stored and retrieved. Test edge cases like empty tasks or invalid time slots.",
+        "priority": "high",
+        "dependencies": [
+          3,
+          4
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 6,
+        "title": "Implement Local Storage Persistence",
+        "description": "Create a data persistence layer using browser's localStorage to save and retrieve user data (tasks, notes, completion status).",
+        "details": "1. Create a StorageService class to handle data persistence\n2. Implement methods to save and load data from localStorage\n3. Add automatic saving on data changes\n4. Implement data versioning for future compatibility\n5. Add error handling for storage quota exceeded\n6. Create data export/import functionality\n7. Implement data cleanup for old/completed tasks\n\nCode structure:\n```typescript\nclass StorageService {\n  private storageKey = 'visual-daily-planner';\n  \n  saveData(data: any): boolean {\n    try {\n      localStorage.setItem(this.storageKey, JSON.stringify(data));\n      return true;\n    } catch (error) {\n      console.error('Failed to save data:', error);\n      return false;\n    }\n  }\n  \n  loadData(): any {\n    try {\n      const data = localStorage.getItem(this.storageKey);\n      return data ? JSON.parse(data) : null;\n    } catch (error) {\n      console.error('Failed to load data:', error);\n      return null;\n    }\n  }\n  \n  clearData(): boolean {\n    try {\n      localStorage.removeItem(this.storageKey);\n      return true;\n    } catch (error) {\n      return false;\n    }\n  }\n}\n```",
+        "testStrategy": "Test saving and loading data from localStorage. Verify that data persists after page refresh. Test error handling by simulating storage quota exceeded. Verify that data versioning works correctly. Test data export/import functionality.",
+        "priority": "high",
+        "dependencies": [
+          5
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 7,
+        "title": "Implement Quotes API Integration",
+        "description": "Integrate with a quotes API to display motivational quotes throughout the application.",
+        "details": "1. Create a QuotesService class to handle API requests\n2. Implement methods to fetch quotes from ZenQuotes API or similar\n3. Add caching to reduce API calls\n4. Implement fallback quotes for offline use\n5. Create UI components to display quotes in different parts of the app\n6. Add quote refresh functionality\n7. Implement error handling for API failures\n\nCode structure:\n```typescript\nclass QuotesService {\n  private apiUrl = 'https://zenquotes.io/api/random';\n  private cache: Quote[] = [];\n  \n  async getRandomQuote(): Promise<Quote> {\n    if (this.cache.length > 0) {\n      return this.cache[Math.floor(Math.random() * this.cache.length)];\n    }\n    \n    try {\n      const response = await fetch(this.apiUrl);\n      if (!response.ok) throw new Error('Failed to fetch quote');\n      \n      const data = await response.json();\n      const quote = { text: data[0].q, author: data[0].a };\n      \n      this.cache.push(quote);\n      return quote;\n    } catch (error) {\n      console.error('Error fetching quote:', error);\n      return this.getFallbackQuote();\n    }\n  }\n  \n  private getFallbackQuote(): Quote {\n    const fallbacks = [\n      { text: 'The best way to predict the future is to create it.', author: 'Abraham Lincoln' },\n      // Add more fallback quotes\n    ];\n    return fallbacks[Math.floor(Math.random() * fallbacks.length)];\n  }\n}\n\ninterface Quote {\n  text: string;\n  author: string;\n}\n```",
+        "testStrategy": "Test API integration by verifying quotes are fetched and displayed correctly. Test caching mechanism to ensure it reduces API calls. Test fallback quotes when API is unavailable. Verify that quotes are displayed in all designated areas of the app.",
+        "priority": "medium",
+        "dependencies": [
+          2
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 8,
+        "title": "Implement Recipe API Integration",
+        "description": "Integrate with a recipe API to provide real-time recipe recommendations for users.",
+        "details": "1. Create a RecipeService class to handle API requests\n2. Implement methods to fetch recipes from 식품의약품안전처 Open API\n3. Add filtering options for dietary preferences\n4. Create UI components to display recipe recommendations\n5. Implement caching to reduce API calls\n6. Add recipe detail view with ingredients and instructions\n7. Implement error handling for API failures\n\nCode structure:\n```typescript\nclass RecipeService {\n  private apiUrl = 'https://www.foodsafetykorea.go.kr/api/';\n  private apiKey = ''; // Will need to be obtained\n  \n  async getRandomRecipe(): Promise<Recipe> {\n    try {\n      const response = await fetch(`${this.apiUrl}/COOKRCP01/json/${this.apiKey}/1/1`);\n      if (!response.ok) throw new Error('Failed to fetch recipe');\n      \n      const data = await response.json();\n      // Transform API response to Recipe object\n      return this.transformApiResponse(data);\n    } catch (error) {\n      console.error('Error fetching recipe:', error);\n      return this.getFallbackRecipe();\n    }\n  }\n  \n  private transformApiResponse(data: any): Recipe {\n    // Transform API data to Recipe object\n    // Implementation depends on actual API response structure\n  }\n  \n  private getFallbackRecipe(): Recipe {\n    // Return a fallback recipe when API fails\n  }\n}\n\ninterface Recipe {\n  id: string;\n  title: string;\n  ingredients: string[];\n  instructions: string[];\n  imageUrl?: string;\n}\n```",
+        "testStrategy": "Test API integration by verifying recipes are fetched and displayed correctly. Test caching mechanism to ensure it reduces API calls. Test fallback recipes when API is unavailable. Verify that recipe details are displayed correctly.",
+        "priority": "medium",
+        "dependencies": [
+          2
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 9,
+        "title": "Implement Book API Integration",
+        "description": "Integrate with a book API to provide real-time book recommendations for users.",
+        "details": "1. Create a BookService class to handle API requests\n2. Implement methods to fetch books from Open Library API\n3. Add filtering options for genres and preferences\n4. Create UI components to display book recommendations\n5. Implement caching to reduce API calls\n6. Add book detail view with description and cover image\n7. Implement error handling for API failures\n\nCode structure:\n```typescript\nclass BookService {\n  private apiUrl = 'https://openlibrary.org/api/';\n  \n  async getRandomBook(): Promise<Book> {\n    try {\n      // Get a random subject\n      const subjects = ['love', 'adventure', 'fantasy', 'science', 'history'];\n      const randomSubject = subjects[Math.floor(Math.random() * subjects.length)];\n      \n      const response = await fetch(`https://openlibrary.org/subjects/${randomSubject}.json?limit=10`);\n      if (!response.ok) throw new Error('Failed to fetch books');\n      \n      const data = await response.json();\n      const works = data.works || [];\n      \n      if (works.length === 0) throw new Error('No books found');\n      \n      const randomWork = works[Math.floor(Math.random() * works.length)];\n      \n      return {\n        id: randomWork.key,\n        title: randomWork.title,\n        author: randomWork.authors?.[0]?.name || 'Unknown',\n        coverUrl: randomWork.cover_id ? \n          `https://covers.openlibrary.org/b/id/${randomWork.cover_id}-M.jpg` : \n          null,\n        description: 'Click to view details'\n      };\n    } catch (error) {\n      console.error('Error fetching book:', error);\n      return this.getFallbackBook();\n    }\n  }\n  \n  private getFallbackBook(): Book {\n    // Return a fallback book when API fails\n  }\n}\n\ninterface Book {\n  id: string;\n  title: string;\n  author: string;\n  coverUrl: string | null;\n  description?: string;\n}\n```",
+        "testStrategy": "Test API integration by verifying books are fetched and displayed correctly. Test caching mechanism to ensure it reduces API calls. Test fallback books when API is unavailable. Verify that book details are displayed correctly.",
+        "priority": "medium",
+        "dependencies": [
+          2
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 10,
+        "title": "Implement Activity Recommendations System",
+        "description": "Create a system to suggest activities by category (rest, hobbies, exercise, self-development, relationships, volunteering, etc.).",
+        "details": "1. Create an ActivityRecommendationService class\n2. Define activity categories and populate with suggestions\n3. Implement methods to get random recommendations by category\n4. Create UI components to display recommendations\n5. Add special section for \"What to do when you don't know what to do\"\n6. Implement filtering and preference-based recommendations\n7. Create activity detail view with instructions or resources\n\nCode structure:\n```typescript\ninterface Activity {\n  id: string;\n  title: string;\n  category: string;\n  description: string;\n  duration?: number; // in minutes\n  resources?: string[];\n}\n\nclass ActivityRecommendationService {\n  private activities: Activity[] = [\n    // Rest category\n    { id: 'rest-1', title: 'Take a power nap', category: 'rest', description: 'A short 20-minute nap to recharge' },\n    { id: 'rest-2', title: 'Deep breathing exercise', category: 'rest', description: '5 minutes of deep breathing' },\n    \n    // Exercise category\n    { id: 'exercise-1', title: 'Quick stretching routine', category: 'exercise', description: '10-minute full-body stretch' },\n    { id: 'exercise-2', title: 'Walk around the block', category: 'exercise', description: '15-minute walk outdoors' },\n    \n    // Add more activities for each category\n  ];\n  \n  getActivitiesByCategory(category: string): Activity[] {\n    return this.activities.filter(activity => activity.category === category);\n  }\n  \n  getRandomActivity(category?: string): Activity {\n    const filteredActivities = category ? \n      this.getActivitiesByCategory(category) : \n      this.activities;\n      \n    return filteredActivities[Math.floor(Math.random() * filteredActivities.length)];\n  }\n  \n  getIdleTimeActivities(): Activity[] {\n    // Special recommendations for when users don't know what to do\n    return this.activities.filter(activity => \n      ['rest', 'hobby', 'self-development'].includes(activity.category)\n    ).slice(0, 5);\n  }\n}\n```",
+        "testStrategy": "Test recommendation system by verifying activities are suggested correctly by category. Test the \"What to do when you don't know what to do\" section. Verify that activity details are displayed correctly. Test edge cases like empty categories.",
+        "priority": "medium",
+        "dependencies": [
+          2
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 11,
+        "title": "Implement Notifications and Reminders",
+        "description": "Create a notification and reminder system for tasks and routines.",
+        "details": "1. Create a NotificationService class\n2. Implement browser notifications using the Notifications API\n3. Add scheduling for reminders based on task times\n4. Create UI for managing notification preferences\n5. Implement sound alerts for notifications\n6. Add visual indicators for upcoming tasks\n7. Create notification history/log\n8. Implement snooze functionality\n\nCode structure:\n```typescript\nclass NotificationService {\n  private hasPermission = false;\n  \n  constructor() {\n    this.requestPermission();\n  }\n  \n  \n  async requestPermission(): Promise<boolean> {\n    if (!('Notification' in window)) {\n      console.warn('This browser does not support notifications');\n      return false;\n    }\n    \n    if (Notification.permission === 'granted') {\n      this.hasPermission = true;\n      return true;\n    }\n    \n    if (Notification.permission !== 'denied') {\n      const permission = await Notification.requestPermission();\n      this.hasPermission = permission === 'granted';\n      return this.hasPermission;\n    }\n    \n    return false;\n  }\n  \n  scheduleNotification(title: string, options: NotificationOptions, delayMs: number): number {\n    return window.setTimeout(() => {\n      this.showNotification(title, options);\n    }, delayMs);\n  }\n  \n  showNotification(title: string, options: NotificationOptions = {}): boolean {\n    if (!this.hasPermission) {\n      console.warn('Notification permission not granted');\n      return false;\n    }\n    \n    try {\n      new Notification(title, options);\n      return true;\n    } catch (error) {\n      console.error('Failed to show notification:', error);\n      return false;\n    }\n  }\n  \n  cancelScheduledNotification(id: number): void {\n    window.clearTimeout(id);\n  }\n}\n```",
+        "testStrategy": "Test notification permissions and display. Verify that scheduled notifications appear at the correct time. Test notification preferences. Verify that sound alerts work correctly. Test snooze functionality.",
+        "priority": "medium",
+        "dependencies": [
+          5
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 12,
+        "title": "Implement View Synchronization",
+        "description": "Create a system to synchronize the timetable grid view and circular clock view, ensuring changes in one view are reflected in the other.",
+        "details": "1. Create a ViewSynchronizationService class\n2. Implement event system for view updates\n3. Create methods to sync selection state between views\n4. Add visual indicators for selected time slots in both views\n5. Implement smooth transitions when switching between views\n6. Ensure task updates are reflected in both views\n7. Add animation for highlighting the active time slot\n\nCode structure:\n```typescript\nclass ViewSynchronizationService {\n  private eventBus = document.createElement('div'); // Simple event bus\n  \n  constructor(private timeTableView: any, private circularView: any) {\n    this.setupEventListeners();\n  }\n  \n  private setupEventListeners(): void {\n    // Listen for time slot selection in timetable view\n    this.timeTableView.container.addEventListener('slot-selected', (event: CustomEvent) => {\n      const { hour } = event.detail;\n      this.circularView.selectHour(hour, false); // false = don't trigger another event\n    });\n    \n    // Listen for time slot selection in circular view\n    this.circularView.container.addEventListener('slot-selected', (event: CustomEvent) => {\n      const { hour } = event.detail;\n      this.timeTableView.selectHour(hour, false); // false = don't trigger another event\n    });\n    \n    // Listen for task updates\n    this.eventBus.addEventListener('task-updated', (event: CustomEvent) => {\n      const { task } = event.detail;\n      this.updateViewsWithTask(task);\n    });\n  }\n  \n  selectTimeSlot(hour: number): void {\n    this.timeTableView.selectHour(hour, true);\n    this.circularView.selectHour(hour, true);\n  }\n  \n  updateViewsWithTask(task: any): void {\n    this.timeTableView.updateTaskIndicator(task);\n    this.circularView.updateTaskIndicator(task);\n  }\n  \n  emitTaskUpdated(task: any): void {\n    const event = new CustomEvent('task-updated', { detail: { task } });\n    this.eventBus.dispatchEvent(event);\n  }\n}\n```",
+        "testStrategy": "Test synchronization by selecting time slots in each view and verifying the other view updates accordingly. Test task updates and verify they appear in both views. Test edge cases like rapid switching between views.",
+        "priority": "medium",
+        "dependencies": [
+          3,
+          4,
+          5
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 13,
+        "title": "Implement Notes and Annotations",
+        "description": "Create functionality for users to add notes and annotations to tasks and time slots.",
+        "details": "1. Create a NotesService class\n2. Implement methods for adding, editing, and deleting notes\n3. Create UI components for note input and display\n4. Add rich text formatting options\n5. Implement auto-save for notes\n6. Create note search functionality\n7. Add character count and validation\n8. Implement note categories or tags\n\nCode structure:\n```typescript\ninterface Note {\n  id: string;\n  taskId?: string;\n  timeSlot?: number;\n  content: string;\n  createdAt: Date;\n  updatedAt: Date;\n}\n\nclass NotesService {\n  private notes: Note[] = [];\n  \n  addNote(note: Partial<Note>): Note {\n    const newNote: Note = {\n      id: crypto.randomUUID(),\n      content: note.content || '',\n      taskId: note.taskId,\n      timeSlot: note.timeSlot,\n      createdAt: new Date(),\n      updatedAt: new Date()\n    };\n    \n    this.notes.push(newNote);\n    return newNote;\n  }\n  \n  updateNote(id: string, updates: Partial<Note>): Note | null {\n    const noteIndex = this.notes.findIndex(note => note.id === id);\n    if (noteIndex === -1) return null;\n    \n    const updatedNote = {\n      ...this.notes[noteIndex],\n      ...updates,\n      updatedAt: new Date()\n    };\n    \n    this.notes[noteIndex] = updatedNote;\n    return updatedNote;\n  }\n  \n  deleteNote(id: string): boolean {\n    const initialLength = this.notes.length;\n    this.notes = this.notes.filter(note => note.id !== id);\n    return this.notes.length < initialLength;\n  }\n  \n  getNotesByTaskId(taskId: string): Note[] {\n    return this.notes.filter(note => note.taskId === taskId);\n  }\n  \n  getNotesByTimeSlot(timeSlot: number): Note[] {\n    return this.notes.filter(note => note.timeSlot === timeSlot);\n  }\n}\n```",
+        "testStrategy": "Test adding, editing, and deleting notes. Verify that notes are associated with the correct tasks or time slots. Test auto-save functionality. Verify that rich text formatting works correctly. Test note search and filtering.",
+        "priority": "medium",
+        "dependencies": [
+          5
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 14,
+        "title": "Implement Application State Management",
+        "description": "Create a centralized state management system to handle application data and state changes.",
+        "details": "1. Create an AppState class to manage global state\n2. Implement methods for updating and subscribing to state changes\n3. Create actions and reducers for state modifications\n4. Add middleware for side effects (API calls, storage)\n5. Implement state persistence with localStorage\n6. Create debug tools for state inspection\n7. Add state history for undo/redo functionality\n\nCode structure:\n```typescript\ntype StateListener = (state: AppStateData) => void;\n\ninterface AppStateData {\n  tasks: any[];\n  notes: any[];\n  selectedTimeSlot: number | null;\n  quotes: any[];\n  recommendations: any[];\n  settings: {\n    theme: string;\n    notifications: boolean;\n    // Other settings\n  };\n}\n\nclass AppState {\n  private state: AppStateData = {\n    tasks: [],\n    notes: [],\n    selectedTimeSlot: null,\n    quotes: [],\n    recommendations: [],\n    settings: {\n      theme: 'light',\n      notifications: true\n    }\n  };\n  \n  private listeners: StateListener[] = [];\n  \n  getState(): AppStateData {\n    return { ...this.state }; // Return copy to prevent direct mutation\n  }\n  \n  setState(partialState: Partial<AppStateData>): void {\n    this.state = { ...this.state, ...partialState };\n    this.notifyListeners();\n  }\n  \n  subscribe(listener: StateListener): () => void {\n    this.listeners.push(listener);\n    \n    // Return unsubscribe function\n    return () => {\n      this.listeners = this.listeners.filter(l => l !== listener);\n    };\n  }\n  \n  private notifyListeners(): void {\n    this.listeners.forEach(listener => listener(this.getState()));\n  }\n}\n```",
+        "testStrategy": "Test state updates and verify that listeners are notified correctly. Test state persistence with localStorage. Verify that state history works for undo/redo. Test performance with large state objects.",
+        "priority": "high",
+        "dependencies": [
+          5,
+          6
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 15,
+        "title": "Implement UI Polish and Final Integration",
+        "description": "Finalize the UI with animations, transitions, and ensure all components are properly integrated.",
+        "details": "1. Add loading states and spinners\n2. Implement smooth transitions between views\n3. Add micro-interactions and feedback animations\n4. Create error states and user feedback messages\n5. Implement keyboard shortcuts\n6. Add accessibility features (ARIA attributes, keyboard navigation)\n7. Optimize performance for animations and transitions\n8. Create final responsive adjustments\n9. Implement dark/light mode toggle\n10. Add final UI polish and consistency checks\n\nCode structure:\n```typescript\nclass UIManager {\n  constructor() {\n    this.initializeAnimations();\n    this.setupKeyboardShortcuts();\n    this.setupAccessibility();\n    this.setupThemeToggle();\n  }\n  \n  initializeAnimations(): void {\n    // Set up CSS animations and transitions\n    document.documentElement.classList.add('animations-enabled');\n    \n    // Add intersection observers for scroll animations\n    const animatedElements = document.querySelectorAll('.animate-on-scroll');\n    const observer = new IntersectionObserver(entries => {\n      entries.forEach(entry => {\n        if (entry.isIntersecting) {\n          entry.target.classList.add('animated');\n        }\n      });\n    });\n    \n    animatedElements.forEach(el => observer.observe(el));\n  }\n  \n  setupKeyboardShortcuts(): void {\n    // Add keyboard shortcuts\n    document.addEventListener('keydown', (event) => {\n      // Handle keyboard shortcuts\n      if (event.ctrlKey && event.key === 'n') {\n        // New task shortcut\n        event.preventDefault();\n        // Open new task dialog\n      }\n    });\n  }\n  \n  setupAccessibility(): void {\n    // Add ARIA attributes and focus management\n  }\n  \n  setupThemeToggle(): void {\n    // Set up theme toggle functionality\n    const themeToggle = document.getElementById('theme-toggle');\n    if (themeToggle) {\n      themeToggle.addEventListener('click', () => {\n        document.body.classList.toggle('dark-theme');\n      });\n    }\n  }\n}\n```",
+        "testStrategy": "Test animations and transitions for smoothness. Verify that keyboard shortcuts work correctly. Test accessibility with screen readers. Verify that dark/light mode toggle works. Test loading states and error messages.",
+        "priority": "medium",
+        "dependencies": [
+          3,
+          4,
+          5,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "status": "pending",
+        "subtasks": []
+      }
+    ],
+    "metadata": {
+      "created": "2025-06-28T05:56:56.509Z",
+      "updated": "2025-06-28T05:56:56.509Z",
+      "description": "Tasks for master context"
+    }
+  }
+}
