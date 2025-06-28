@@ -2,7 +2,6 @@
 // ... implement timetable grid view here 
 
 import { loadTimeTable, saveTimeTable } from '../services/storage';
-import type { TimeSlot } from '../services/storage';
 
 export function TimeTable() {
   // 시간대 배열 (1~24시)

@@ -1,5 +1,3 @@
-import { loadTimeTable } from '../services/storage';
-
 // CircularClock component placeholder
 // ... implement circular clock view here 
 
